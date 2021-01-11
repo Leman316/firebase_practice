@@ -1,3 +1,6 @@
+import 'package:firebase_practice/providers/notes.dart';
+
+import 'drawer.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,9 +9,11 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Practicing with Firebase'),
+        actions: [],
       ),
+      drawer: AppDrawer(),
       body: Center(
-        child: Text('data'),
+        child: Text('fsa'),
       ),
     );
   }
