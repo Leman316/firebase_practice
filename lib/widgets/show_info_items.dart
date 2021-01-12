@@ -1,10 +1,10 @@
 import 'package:firebase_practice/providers/notes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/notes.dart' as Nte;
+import '../providers/notes.dart';
 
 class ShowInfoGrids extends StatelessWidget {
-  final Nte.NotesItem notes;
+  final NotesItem notes;
 
   ShowInfoGrids(this.notes);
   @override

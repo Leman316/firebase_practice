@@ -83,7 +83,7 @@ class _AddInformationState extends State<AddInformation> {
                       noteId: null,
                       title: _editednote.title,
                       day: newValue.day,
-                      month: DateFormat.MMMEd().format(newValue),
+                      month: DateFormat.MMM().format(newValue),
                       year: newValue.year,
                       description: _editednote.description);
                 },

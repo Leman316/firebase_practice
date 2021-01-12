@@ -23,16 +23,7 @@ class NotesItem {
 }
 
 class Notes with ChangeNotifier {
-  List<NotesItem> _notes = [
-    NotesItem(
-      noteId: 'sf',
-      title: 'gsa',
-      day: DateTime.now().day,
-      month: DateFormat.MMM().format(DateTime.now()),
-      year: DateTime.now().year,
-      description: 'fasgsvasgsagahsa',
-    )
-  ];
+  List<NotesItem> _notes = [];
 
   List<NotesItem> get notes {
     return [..._notes];
@@ -72,15 +63,13 @@ class Notes with ChangeNotifier {
           'day': note.day,
         }));
 
-    _notes.insert(
-        0,
-        NotesItem(
-            title: note.title,
-            description: note.description,
-            day: note.day,
-            month: note.month,
-            year: note.year,
-            noteId: jsonDecode(resp.body)['name']));
+    _notes.add(NotesItem(
+        title: note.title,
+        description: note.description,
+        day: note.day,
+        month: note.month,
+        year: note.year,
+        noteId: jsonDecode(resp.body)['name']));
     notifyListeners();
   }
 }
