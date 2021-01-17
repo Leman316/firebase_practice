@@ -96,6 +96,7 @@ class _AddInformationState extends State<AddInformation> {
                 focusNode: _descFocusNode,
                 maxLines: 4,
                 keyboardType: TextInputType.multiline,
+                
                 onSaved: (newValue) {
                   _editednote = NotesItem(
                       noteId: null,

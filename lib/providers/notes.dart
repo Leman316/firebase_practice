@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:firebase_practice/helpers/db_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -34,7 +35,7 @@ class Notes with ChangeNotifier {
     final resp = await http.get(url);
     final extractedData = jsonDecode(resp.body) as Map;
     List<NotesItem> loadedNotes = [];
-    print(extractedData);
+    // print(extractedData);
 
     extractedData.forEach((key, value) {
       loadedNotes.add(NotesItem(
@@ -48,6 +49,18 @@ class Notes with ChangeNotifier {
     });
     _notes = loadedNotes.toList();
 
+    _notes.forEach((element) {
+      DBHelper.insert('notes', {
+        'title': element.title,
+        //'desc': element.description,
+        'day': element.day,
+        'month': element.month,
+        'year': element.year,
+      });
+    });
+
+    final datalist = await DBHelper.getData('notes');
+    print(datalist);
     notifyListeners();
   }
 
@@ -63,13 +76,15 @@ class Notes with ChangeNotifier {
           'day': note.day,
         }));
 
-    _notes.add(NotesItem(
+    final newNote = NotesItem(
         title: note.title,
         description: note.description,
         day: note.day,
         month: note.month,
         year: note.year,
-        noteId: jsonDecode(resp.body)['name']));
+        noteId: jsonDecode(resp.body)['name']);
+    _notes.add(newNote);
+
     notifyListeners();
   }
 }
